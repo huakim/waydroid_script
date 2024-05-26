@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-from InquirerPy import inquirer
-from InquirerPy.base.control import Choice
-from InquirerPy.separator import Separator
+try:
+    from InquirerPy import inquirer
+    from InquirerPy.base.control import Choice
+    from InquirerPy.separator import Separator
+except ModuleNotFoundError: 
+    inquirer = None
 import argparse
 import os
 from typing import List
@@ -199,7 +202,11 @@ def hack_option(args):
     container.upgrade()
 
 
-def interact():
+def interact(parser=None):
+    if inquirer is None:
+        Logger.warning("You must install InquirerPy to work with interactive mode")
+        if parser:
+            parser.print_help(sys.stdout)
     os.system("clear")
     args = argparse.Namespace()
     android_version = inquirer.select(
@@ -351,7 +358,7 @@ widevine: Add support for widevine DRM L3
         args.func(args)
     else:
         helper.check_root()
-        interact()
+        interact(parser)
 
 
 if __name__ == "__main__":
