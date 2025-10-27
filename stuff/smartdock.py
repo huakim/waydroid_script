@@ -4,10 +4,10 @@ from stuff.general import General
 
 class Smartdock(General):
     id = "smartdock"
-    dl_link = "https://f-droid.org/repo/cu.axel.smartdock_1130.apk"
+    dl_link = "https://f-droid.org/repo/cu.axel.smartdock_1141.apk"
     partition = "system"
     dl_file_name = "smartdock.apk"
-    act_md5 = "6bfedb959ef5855c3782e8001cb67f86"
+    act_md5 = "988a51266e4ada5d6f72b1d857726360"
     apply_props = { "qemu.hw.mainkeys" : "1" }
     skip_extract = True
     permissions = """<?xml version="1.0" encoding="utf-8"?>
