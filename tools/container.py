@@ -8,7 +8,7 @@ def use_overlayfs():
     cfg = configparser.ConfigParser()
     cfg_file = os.environ.get("WAYDROID_CONFIG", "/var/lib/waydroid/waydroid.cfg")
     if not os.path.isfile(cfg_file):
-        Logger.error("Cannot locate waydroid config file, reinit wayland and try again!")
+        Logger.error("Cannot locate waydroid config file, reinit waydroid and try again!")
         sys.exit(1)
     cfg.read(cfg_file)
     if "waydroid" not in cfg:
@@ -28,6 +28,6 @@ def is_running():
 
 def upgrade():
     try:
-        run(["waydroid", "upgrade"], ignore=r"\[.*\] Stopping container\n\[.*\] Starting container")
+        run(["waydroid", "upgrade", "-o"], ignore=r"\[.*\] Stopping container\n\[.*\] Starting container")
     except subprocess.CalledProcessError:
         Logger.warning("Waydroid upgrade reported an error (likely system_ota), but we are continuing...")
